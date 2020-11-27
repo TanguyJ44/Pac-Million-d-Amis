@@ -1,4 +1,4 @@
-package fr.supinfo.java.objects;
+package fr.supinfo.java.entity;
 
 import fr.supinfo.java.main.Main;
 import fr.supinfo.java.physical.Collides;
@@ -20,6 +20,8 @@ public class Pacman extends JLabel {
     int tempDir = 0;
     int count = 0;
     int maxCount = 100;
+
+    int eatTime = 2000;
 
     public Pacman(int x, int y, int speed) {
         rand = new Random();
@@ -80,6 +82,11 @@ public class Pacman extends JLabel {
                 setLocation(getX(), getY() - 10);
             }
         }
+        eatTime--;
+        if (eatTime < 1) {
+            setGlobalSize(size-1);
+            hasEat();
+        }
     }
 
     public int getGlobalSize() {
@@ -95,8 +102,11 @@ public class Pacman extends JLabel {
             System.out.println("[!] Pacman dead !");
             Main.pbg.remove(this);
             Motor.pacmans.remove(this);
-            Motor.eatTime.remove(Motor.pacmans.indexOf(this));
         }
+    }
+
+    public void hasEat() {
+        eatTime = 2000;
     }
 
     public void setDirTop() {

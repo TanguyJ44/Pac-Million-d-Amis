@@ -1,4 +1,4 @@
-package fr.supinfo.java.objects;
+package fr.supinfo.java.entity;
 
 import javax.swing.*;
 import java.util.Random;

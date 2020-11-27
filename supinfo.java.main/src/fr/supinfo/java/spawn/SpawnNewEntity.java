@@ -1,8 +1,8 @@
 package fr.supinfo.java.spawn;
 
 import fr.supinfo.java.main.Main;
-import fr.supinfo.java.objects.Ghost;
-import fr.supinfo.java.objects.Pacman;
+import fr.supinfo.java.entity.Ghost;
+import fr.supinfo.java.entity.Pacman;
 import fr.supinfo.java.physical.Motor;
 
 public class SpawnNewEntity {
@@ -13,7 +13,6 @@ public class SpawnNewEntity {
 
         Main.pbg.add(pacman);
         Motor.pacmans.add(pacman);
-        Motor.eatTime.add(System.currentTimeMillis());
     }
 
     public static void spawnGhost() {

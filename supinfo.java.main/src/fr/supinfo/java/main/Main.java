@@ -2,10 +2,7 @@ package fr.supinfo.java.main;
 
 import fr.supinfo.java.gui.Frame;
 import fr.supinfo.java.gui.PaintBackground;
-import fr.supinfo.java.objects.Ghost;
-import fr.supinfo.java.objects.Pacman;
 import fr.supinfo.java.physical.Motor;
-import fr.supinfo.java.spawn.ObjPosition;
 import fr.supinfo.java.spawn.SpawnNewEntity;
 import fr.supinfo.java.spawn.SpawnPoints;
 

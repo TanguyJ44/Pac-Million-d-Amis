@@ -2,7 +2,7 @@ package fr.supinfo.java.physical;
 
 import fr.supinfo.java.gui.Frame;
 import fr.supinfo.java.main.Main;
-import fr.supinfo.java.objects.Pacman;
+import fr.supinfo.java.entity.Pacman;
 
 import javax.swing.*;
 
@@ -60,9 +60,9 @@ public class Collides {
 
             } else {
                 pacman.setGlobalSize(pacman.getGlobalSize() + 1);
+                pacman.hasEat();
                 Main.pbg.remove(Motor.ghosts.get(i));
                 Motor.ghosts.remove(Motor.ghosts.get(i));
-                Motor.eatTime.add(Motor.pacmans.indexOf(pacman), System.currentTimeMillis());
             }
         }
     }
