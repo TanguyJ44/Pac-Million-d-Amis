@@ -7,6 +7,7 @@ import fr.supinfo.java.objects.Pacman;
 import fr.supinfo.java.spawn.SpawnNewEntity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,6 +17,7 @@ public class Motor {
 
     public static ScheduledExecutorService executor;
     public static ArrayList<Pacman> pacmans;
+    public static ArrayList<Long> eatTime;
     public static ArrayList<Ghost> ghosts;
     public static Random rand;
 
@@ -34,6 +36,7 @@ public class Motor {
 
     public static void init() {
         pacmans = new ArrayList<>();
+        eatTime = new ArrayList<>();
         ghosts = new ArrayList<>();
         rand = new Random();
     }
@@ -44,6 +47,10 @@ public class Motor {
             public void run() {
                 for (int i = 0; i < pacmans.size(); i++) {
                     pacmans.get(i).onMove();
+                    if ((System.currentTimeMillis() - Motor.eatTime.get(i)) > 10000) {
+                        pacmans.get(i).setGlobalSize(pacmans.get(i).getGlobalSize() - 1);
+                        eatTime.add(pacmans.indexOf(i), System.currentTimeMillis());
+                    }
                 }
 
                 if (startRec == false) {
@@ -66,7 +73,7 @@ public class Motor {
                 }
                 countTimeSpawnGhost += 1;
                 if (timeSpawnNextGhost == countTimeSpawnGhost) {
-                    SpawnNewEntity.spawnGhost();
+                    //SpawnNewEntity.spawnGhost();
                     countTimeSpawnGhost = 0;
                     timeSpawnNextGhost = rand.nextInt(800 - 300 + 1) + 300;
                 }

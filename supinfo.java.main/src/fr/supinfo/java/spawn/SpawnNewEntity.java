@@ -13,6 +13,7 @@ public class SpawnNewEntity {
 
         Main.pbg.add(pacman);
         Motor.pacmans.add(pacman);
+        Motor.eatTime.add(System.currentTimeMillis());
     }
 
     public static void spawnGhost() {

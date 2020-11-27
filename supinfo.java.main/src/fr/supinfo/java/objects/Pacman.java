@@ -1,6 +1,8 @@
 package fr.supinfo.java.objects;
 
+import fr.supinfo.java.main.Main;
 import fr.supinfo.java.physical.Collides;
+import fr.supinfo.java.physical.Motor;
 
 import javax.swing.*;
 import java.util.Random;
@@ -66,16 +68,16 @@ public class Pacman extends JLabel {
         } else {
             if (dir == 0) {
                 dir = 2;
-                setLocation(getX() + speed, getY());
+                setLocation(getX() + 10, getY());
             } else if (dir == 1) {
                 dir = 3;
-                setLocation(getX(), getY() + speed);
+                setLocation(getX(), getY() + 10);
             } else if (dir == 2) {
                 dir = 0;
-                setLocation(getX() - speed, getY());
+                setLocation(getX() - 10, getY());
             } else if (dir == 3) {
                 dir = 1;
-                setLocation(getX(), getY() - speed);
+                setLocation(getX(), getY() - 10);
             }
         }
     }
@@ -88,6 +90,12 @@ public class Pacman extends JLabel {
         size = newSize;
         if (newSize == 5) {
             System.out.println("(!) Sifflement");
+        }
+        if (newSize == 0) {
+            System.out.println("[!] Pacman dead !");
+            Main.pbg.remove(this);
+            Motor.pacmans.remove(this);
+            Motor.eatTime.remove(Motor.pacmans.indexOf(this));
         }
     }
 

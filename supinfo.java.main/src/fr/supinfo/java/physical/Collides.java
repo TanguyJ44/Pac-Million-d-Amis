@@ -19,7 +19,7 @@ public class Collides {
         if (checkCollide(pacman, Frame.collide04)) return true;
         if (checkCollide(pacman, Frame.collide05)) return true;
 
-        //if (checkPacmanCollide(pacman)) return true;
+        if (checkPacmanCollide(pacman)) return true;
 
         checkPacmanGhost(pacman);
 
@@ -59,11 +59,10 @@ public class Collides {
                     || (pacman.getY() + pacman.getHeight() <= Motor.ghosts.get(i).getY())){
 
             } else {
-                if (pacman.getGlobalSize() < 5) {
-                    pacman.setGlobalSize(pacman.getGlobalSize() + 1);
-                    Main.pbg.remove(Motor.ghosts.get(i));
-                    Motor.ghosts.remove(Motor.ghosts.get(i));
-                }
+                pacman.setGlobalSize(pacman.getGlobalSize() + 1);
+                Main.pbg.remove(Motor.ghosts.get(i));
+                Motor.ghosts.remove(Motor.ghosts.get(i));
+                Motor.eatTime.add(Motor.pacmans.indexOf(pacman), System.currentTimeMillis());
             }
         }
     }
