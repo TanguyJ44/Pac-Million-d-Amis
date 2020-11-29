@@ -1,5 +1,6 @@
 package fr.supinfo.java.gui;
 
+import fr.supinfo.java.physical.Collides;
 import fr.supinfo.java.physical.Motor;
 
 import javax.swing.*;
@@ -88,6 +89,7 @@ public class Frame extends JFrame {
             Motor.isRunning = true;
             updateStat(true);
             Motor.start();
+            Collides.start();
         }
     }
 
@@ -97,6 +99,7 @@ public class Frame extends JFrame {
             updateStat(false);
             updateFPS(0);
             Motor.stop();
+            Collides.stop();
         }
     }
 

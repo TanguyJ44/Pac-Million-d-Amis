@@ -14,6 +14,8 @@ public class Pacman extends JLabel {
     int speed;
     int size = 3;
 
+    boolean collided = false;
+
     //0 = left, 1 = top, 2 = right, 3 = down
     int dir = 0;
     int oldDir = 2;
@@ -33,7 +35,7 @@ public class Pacman extends JLabel {
     }
 
     public void onMove() {
-        if (Collides.getCollide(this) == false) {
+        if (!collided) {
             if (dir == 0) {
                 setLocation((int) getX() - speed, (int) getY());
                 setDirLeft();
@@ -68,18 +70,19 @@ public class Pacman extends JLabel {
             }
             count++;
         } else {
+            count -= 10;
             if (dir == 0) {
                 dir = 2;
-                setLocation(getX() + 10, getY());
+                setLocation(getX() + speed, getY());
             } else if (dir == 1) {
                 dir = 3;
-                setLocation(getX(), getY() + 10);
+                setLocation(getX(), getY() + speed);
             } else if (dir == 2) {
                 dir = 0;
-                setLocation(getX() - 10, getY());
+                setLocation(getX() - speed, getY());
             } else if (dir == 3) {
                 dir = 1;
-                setLocation(getX(), getY() - 10);
+                setLocation(getX(), getY() - speed);
             }
         }
         eatTime--;
@@ -89,19 +92,30 @@ public class Pacman extends JLabel {
         }
     }
 
+    public boolean getCollided() {
+        return collided;
+    }
+
+    public void setCollided(boolean newCollided) {
+        collided = newCollided;
+    }
+
     public int getGlobalSize() {
         return size;
     }
 
     public void setGlobalSize(int newSize) {
-        size = newSize;
-        if (newSize == 5) {
-            System.out.println("(!) Sifflement");
-        }
-        if (newSize == 0) {
-            System.out.println("[!] Pacman dead !");
-            Main.pbg.remove(this);
-            Motor.pacmans.remove(this);
+        if (newSize < 6) {
+            size = newSize;
+            if (newSize == 5) {
+                System.out.println("(!) Sifflement");
+            }
+            if (newSize == 0) {
+                System.out.println("[!] Pacman dead !");
+                Main.pbg.remove(this);
+                Motor.pacmans.remove(this);
+                System.out.println("PACMANS : " + Motor.pacmans.size());
+            }
         }
     }
 
@@ -111,76 +125,76 @@ public class Pacman extends JLabel {
 
     public void setDirTop() {
         if (size == 1) {
-            setSize(29, 28);
+            setSize(27, 27);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanTop01.png")));
         } else if (size == 2) {
-            setSize(43, 42);
+            setSize(41, 41);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanTop02.png")));
         } else if (size == 3) {
-            setSize(52, 52);
+            setSize(50, 50);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanTop03.png")));
         } else if (size == 4) {
-            setSize(61, 60);
+            setSize(58, 58);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanTop04.png")));
         } else if (size == 5) {
-            setSize(66, 65);
+            setSize(64, 64);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanTop05.png")));
         }
     }
 
     public void setDirRight() {
         if (size == 1) {
-            setSize(29, 29);
+            setSize(27, 27);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanRight01.png")));
         } else if (size == 2) {
-            setSize(42, 43);
+            setSize(41, 41);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanRight02.png")));
         } else if (size == 3) {
-            setSize(52, 52);
+            setSize(50, 50);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanRight03.png")));
         } else if (size == 4) {
-            setSize(60, 60);
+            setSize(58, 58);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanRight04.png")));
         } else if (size == 5) {
-            setSize(65, 66);
+            setSize(64, 64);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanRight05.png")));
         }
     }
 
     public void setDirBottom() {
         if (size == 1) {
-            setSize(29, 28);
+            setSize(27, 27);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanBottom01.png")));
         } else if (size == 2) {
-            setSize(43, 42);
+            setSize(41, 41);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanBottom02.png")));
         } else if (size == 3) {
-            setSize(52, 52);
+            setSize(50, 50);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanBottom03.png")));
         } else if (size == 4) {
-            setSize(61, 60);
+            setSize(58, 58);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanBottom04.png")));
         } else if (size == 5) {
-            setSize(66, 65);
+            setSize(64, 64);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanBottom05.png")));
         }
     }
 
     public void setDirLeft() {
         if (size == 1) {
-            setSize(27, 28);
+            setSize(27, 27);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanLeft01.png")));
         } else if (size == 2) {
-            setSize(41, 42);
+            setSize(41, 41);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanLeft02.png")));
         } else if (size == 3) {
-            setSize(52, 52);
+            setSize(50, 50);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanLeft03.png")));
         } else if (size == 4) {
-            setSize(57, 60);
+            setSize(58, 58);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanLeft04.png")));
         } else if (size == 5) {
-            setSize(63, 65);
+            setSize(64, 64);
             setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanLeft05.png")));
         }
     }

@@ -5,25 +5,48 @@ import fr.supinfo.java.main.Main;
 import fr.supinfo.java.entity.Pacman;
 
 import javax.swing.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Collides {
 
-    public static boolean getCollide(Pacman pacman) {
-        if (checkCollide(pacman, Frame.collideTop)) return true;
-        if (checkCollide(pacman, Frame.collideRight)) return true;
-        if (checkCollide(pacman, Frame.collideBottom)) return true;
-        if (checkCollide(pacman, Frame.collideLeft)) return true;
-        if (checkCollide(pacman, Frame.collide01)) return true;
-        if (checkCollide(pacman, Frame.collide02)) return true;
-        if (checkCollide(pacman, Frame.collide03)) return true;
-        if (checkCollide(pacman, Frame.collide04)) return true;
-        if (checkCollide(pacman, Frame.collide05)) return true;
+    public static ScheduledExecutorService executor;
 
-        if (checkPacmanCollide(pacman)) return true;
+    public static void start() {
+        executor = Executors.newSingleThreadScheduledExecutor();
+        Runnable periodicTask = new Runnable() {
+            public void run() {
+                boolean returnValue = false;
+                for (int i = 0; i < Motor.pacmans.size(); i++) {
+                    returnValue = false;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collideTop)) returnValue = true;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collideRight)) returnValue = true;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collideBottom)) returnValue = true;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collideLeft)) returnValue = true;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collide01)) returnValue = true;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collide02)) returnValue = true;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collide03)) returnValue = true;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collide04)) returnValue = true;
+                    if (checkCollide(Motor.pacmans.get(i), Frame.collide05)) returnValue = true;
 
-        checkPacmanGhost(pacman);
+                    //if (checkPacmanCollide(Motor.pacmans.get(i))) returnValue = true;
 
-        return false;
+                    checkPacmanGhost(Motor.pacmans.get(i));
+
+                    Motor.pacmans.get(i).setCollided(returnValue);
+
+                    /*if (Motor.pacmans.get(i).getCollided() != returnValue) {
+                        Motor.pacmans.get(i).setCollided(returnValue);
+                    }*/
+                }
+            }
+        };
+        executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.MICROSECONDS);
+    }
+
+    public static void stop() {
+        executor.shutdown();
     }
 
     public static boolean checkCollide(Pacman pacman, JLabel wall) {

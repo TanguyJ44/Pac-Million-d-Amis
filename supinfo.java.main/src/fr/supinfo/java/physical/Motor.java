@@ -43,7 +43,8 @@ public class Motor {
                 for (int i = 0; i < pacmans.size(); i++) {
                     pacmans.get(i).onMove();
                 }
-
+                Main.pbg.repaint();
+                Main.frame.repaint();
                 if (startRec == false) {
                     startTime = System.currentTimeMillis();
                     startRec = true;
@@ -55,11 +56,14 @@ public class Motor {
                     startRec = false;
                 }
                 countTimeSpawnPacman += 1;
-                if (timeSpawnNextPacman == countTimeSpawnPacman && pacmans.size() < 8) {
-                    SpawnNewEntity.spawnPacman();
-                    System.out.println("Spawn new Pacman !");
-                    countTimeSpawnPacman = 0;
-                    timeSpawnNextPacman = rand.nextInt(900 - 600 + 1) + 600;
+                if (timeSpawnNextPacman < countTimeSpawnPacman) {
+                    if (pacmans.size() < 7) {
+                        SpawnNewEntity.spawnPacman();
+                        countTimeSpawnPacman = 0;
+                        timeSpawnNextPacman = rand.nextInt(900 - 600 + 1) + 600;
+                    } else {
+                        countTimeSpawnPacman = 0;
+                    }
                 }
                 countTimeSpawnGhost += 1;
                 if (timeSpawnNextGhost == countTimeSpawnGhost) {

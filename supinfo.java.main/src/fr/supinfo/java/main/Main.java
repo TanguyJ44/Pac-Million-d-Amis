@@ -2,6 +2,7 @@ package fr.supinfo.java.main;
 
 import fr.supinfo.java.gui.Frame;
 import fr.supinfo.java.gui.PaintBackground;
+import fr.supinfo.java.physical.Collides;
 import fr.supinfo.java.physical.Motor;
 import fr.supinfo.java.spawn.SpawnNewEntity;
 import fr.supinfo.java.spawn.SpawnPoints;
@@ -27,6 +28,7 @@ public class Main {
         SpawnNewEntity.spawnGhost();
 
         Motor.start();
+        Collides.start();
 
         pbg.setSize(1200, 800);
         frame.getContentPane().add(pbg);

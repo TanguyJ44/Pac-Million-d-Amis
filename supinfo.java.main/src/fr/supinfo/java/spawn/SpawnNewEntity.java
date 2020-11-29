@@ -13,6 +13,8 @@ public class SpawnNewEntity {
 
         Main.pbg.add(pacman);
         Motor.pacmans.add(pacman);
+
+        System.out.println("Spawn new Pacman !");
     }
 
     public static void spawnGhost() {
