@@ -25,6 +25,9 @@ public class Pacman extends JLabel {
 
     int eatTime = 2000;
 
+    int animation = 0;
+    int animTime = 0;
+
     public Pacman(int x, int y, int speed) {
         rand = new Random();
 
@@ -90,6 +93,15 @@ public class Pacman extends JLabel {
             setGlobalSize(size-1);
             hasEat();
         }
+        animTime++;
+        if (animTime > 40) {
+            if (animation == 0) {
+                animation = 1;
+            } else {
+                animation = 0;
+            }
+            animTime = 0;
+        }
     }
 
     public boolean getCollided() {
@@ -109,6 +121,7 @@ public class Pacman extends JLabel {
             size = newSize;
             if (newSize == 5) {
                 System.out.println("(!) Sifflement");
+                Main.audioControl.play();
             }
             if (newSize == 0) {
                 System.out.println("[!] Pacman dead !");
@@ -126,76 +139,156 @@ public class Pacman extends JLabel {
     public void setDirTop() {
         if (size == 1) {
             setSize(27, 27);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanTop01.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanTopSS101.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanTopSS201.png")));
+            }
         } else if (size == 2) {
             setSize(41, 41);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanTop02.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanTopSS102.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanTopSS202.png")));
+            }
         } else if (size == 3) {
             setSize(50, 50);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanTop03.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanTopSS103.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanTopSS203.png")));
+            }
         } else if (size == 4) {
             setSize(58, 58);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanTop04.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanTopSS104.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanTopSS204.png")));
+            }
         } else if (size == 5) {
             setSize(64, 64);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanTop05.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanTopSS105.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanTopSS205.png")));
+            }
         }
     }
 
     public void setDirRight() {
         if (size == 1) {
             setSize(27, 27);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanRight01.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanRightSS101.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanRightSS201.png")));
+            }
         } else if (size == 2) {
             setSize(41, 41);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanRight02.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanRightSS102.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanRightSS202.png")));
+            }
         } else if (size == 3) {
             setSize(50, 50);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanRight03.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanRightSS103.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanRightSS203.png")));
+            }
         } else if (size == 4) {
             setSize(58, 58);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanRight04.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanRightSS104.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanRightSS204.png")));
+            }
         } else if (size == 5) {
             setSize(64, 64);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanRight05.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanRightSS105.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanRightSS205.png")));
+            }
         }
     }
 
     public void setDirBottom() {
         if (size == 1) {
             setSize(27, 27);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanBottom01.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanBottomSS101.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanBottomSS201.png")));
+            }
         } else if (size == 2) {
             setSize(41, 41);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanBottom02.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanBottomSS102.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanBottomSS202.png")));
+            }
         } else if (size == 3) {
             setSize(50, 50);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanBottom03.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanBottomSS103.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanBottomSS203.png")));
+            }
         } else if (size == 4) {
             setSize(58, 58);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanBottom04.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanBottomSS104.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanBottomSS204.png")));
+            }
         } else if (size == 5) {
             setSize(64, 64);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanBottom05.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanBottomSS105.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanBottomSS205.png")));
+            }
         }
     }
 
     public void setDirLeft() {
         if (size == 1) {
             setSize(27, 27);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanLeft01.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanLeftSS101.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman01/pacmanLeftSS201.png")));
+            }
         } else if (size == 2) {
             setSize(41, 41);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanLeft02.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanLeftSS102.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman02/pacmanLeftSS202.png")));
+            }
         } else if (size == 3) {
             setSize(50, 50);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanLeft03.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanLeftSS103.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman03/pacmanLeftSS203.png")));
+            }
         } else if (size == 4) {
             setSize(58, 58);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanLeft04.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanLeftSS104.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman04/pacmanLeftSS204.png")));
+            }
         } else if (size == 5) {
             setSize(64, 64);
-            setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanLeft05.png")));
+            if (animation == 0) {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanLeftSS105.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/imgs/pacman05/pacmanLeftSS205.png")));
+            }
         }
     }
 
