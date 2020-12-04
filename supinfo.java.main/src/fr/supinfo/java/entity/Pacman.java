@@ -3,6 +3,7 @@ package fr.supinfo.java.entity;
 import fr.supinfo.java.main.Main;
 import fr.supinfo.java.physical.Collides;
 import fr.supinfo.java.physical.Motor;
+import fr.supinfo.java.utils.PacmanTail;
 
 import javax.swing.*;
 import java.util.Random;
@@ -28,6 +29,8 @@ public class Pacman extends JLabel {
     int animation = 0;
     int animTime = 0;
 
+    boolean stopMove = false;
+
     public Pacman(int x, int y, int speed) {
         rand = new Random();
 
@@ -38,7 +41,7 @@ public class Pacman extends JLabel {
     }
 
     public void onMove() {
-        if (!collided) {
+        if (!collided && !stopMove) {
             if (dir == 0) {
                 setLocation((int) getX() - speed, (int) getY());
                 setDirLeft();
@@ -90,7 +93,7 @@ public class Pacman extends JLabel {
         }
         eatTime--;
         if (eatTime < 1) {
-            setGlobalSize(size-1);
+            if (!stopMove) setGlobalSize(size-1);
             hasEat();
         }
         animTime++;
@@ -102,6 +105,14 @@ public class Pacman extends JLabel {
             }
             animTime = 0;
         }
+    }
+
+    public void setMoveStop(boolean newMove) {
+        stopMove = newMove;
+    }
+
+    public void setCount(int newCount) {
+        count = newCount;
     }
 
     public boolean getCollided() {
@@ -121,7 +132,9 @@ public class Pacman extends JLabel {
             size = newSize;
             if (newSize == 5) {
                 System.out.println("(!) Sifflement");
-                Main.audioControl.play();
+                PacmanTail.init();
+                //Main.audioControl.init(new File("/home/tanguy/Developpement/Java/Projet 2JAVA/supinfo.java.main/src/sound/whistling.wav"));
+                //Main.audioControl.play();
             }
             if (newSize == 0) {
                 System.out.println("[!] Pacman dead !");

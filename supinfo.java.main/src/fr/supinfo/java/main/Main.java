@@ -28,7 +28,6 @@ public class Main {
         SpawnPoints.init();
 
         Motor.init();
-        audioControl.init(new File("/home/tanguy/Developpement/Java/Projet 2JAVA/supinfo.java.main/src/sound/whistling.wav"));
 
         SpawnNewEntity.spawnPacman();
         SpawnNewEntity.spawnGhost();

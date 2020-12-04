@@ -19,6 +19,8 @@ public class Motor {
     public static Random rand;
 
     public static boolean isRunning = true;
+    public static boolean stopSpawn = false;
+    public static boolean stopGhost = false;
 
     static boolean startRec = false;
     static long startTime;
@@ -56,7 +58,7 @@ public class Motor {
                     startRec = false;
                 }
                 countTimeSpawnPacman += 1;
-                if (timeSpawnNextPacman < countTimeSpawnPacman) {
+                if (timeSpawnNextPacman < countTimeSpawnPacman && !stopSpawn) {
                     if (pacmans.size() < 7) {
                         SpawnNewEntity.spawnPacman();
                         countTimeSpawnPacman = 0;
@@ -66,7 +68,7 @@ public class Motor {
                     }
                 }
                 countTimeSpawnGhost += 1;
-                if (timeSpawnNextGhost == countTimeSpawnGhost) {
+                if (timeSpawnNextGhost == countTimeSpawnGhost && !stopGhost) {
                     SpawnNewEntity.spawnGhost();
                     countTimeSpawnGhost = 0;
                     timeSpawnNextGhost = rand.nextInt(800 - 300 + 1) + 300;
