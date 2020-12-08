@@ -1,6 +1,5 @@
 package fr.supinfo.java.physical;
 
-import fr.supinfo.java.entity.Ghost;
 import fr.supinfo.java.gui.Frame;
 import fr.supinfo.java.main.Main;
 import fr.supinfo.java.entity.Pacman;
@@ -13,8 +12,11 @@ import java.util.concurrent.TimeUnit;
 public class Collides {
 
     public static ScheduledExecutorService executor;
+    public static Thread thread;
 
     public static void start() {
+        checkPacmanCollide();
+
         executor = Executors.newSingleThreadScheduledExecutor();
         Runnable periodicTask = new Runnable() {
             public void run() {
@@ -31,8 +33,6 @@ public class Collides {
                     if (checkCollide(Motor.pacmans.get(i), Frame.collide04)) returnValue = true;
                     if (checkCollide(Motor.pacmans.get(i), Frame.collide05)) returnValue = true;
 
-                    checkPacmanCollide(Motor.pacmans.get(i));
-
                     checkPacmanGhost(Motor.pacmans.get(i));
 
                     Motor.pacmans.get(i).setCollided(returnValue);
@@ -44,6 +44,7 @@ public class Collides {
 
     public static void stop() {
         executor.shutdown();
+        thread.interrupt();
     }
 
     public static boolean checkCollide(Pacman pacman, JLabel wall) {
@@ -56,20 +57,37 @@ public class Collides {
         return true;
     }
 
-    public static void checkPacmanCollide(Pacman pacman) {
-        for (int i = 0; i < Motor.pacmans.size(); i++) {
-            if (pacman != Motor.pacmans.get(i)) {
-                if ( (pacman.getX() >= Motor.pacmans.get(i).getX() + Motor.pacmans.get(i).getWidth())
-                        || (pacman.getX() + pacman.getWidth() <= Motor.pacmans.get(i).getX())
-                        || (pacman.getY() >= Motor.pacmans.get(i).getY() + Motor.pacmans.get(i).getHeight())
-                        || (pacman.getY() + pacman.getHeight() <= Motor.pacmans.get(i).getY())){
+    public static void checkPacmanCollide() {
 
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    for (int i = 0; i < Motor.pacmans.size(); i++) {
+                        for (int j = 0; j < Motor.pacmans.size(); j++) {
+                            if (Motor.pacmans.get(i) != Motor.pacmans.get(j)) {
+                                if ( (Motor.pacmans.get(i).getX() >= Motor.pacmans.get(j).getX() + Motor.pacmans.get(j).getWidth())
+                                        || (Motor.pacmans.get(i).getX() + Motor.pacmans.get(i).getWidth() <= Motor.pacmans.get(j).getX())
+                                        || (Motor.pacmans.get(i).getY() >= Motor.pacmans.get(j).getY() + Motor.pacmans.get(j).getHeight())
+                                        || (Motor.pacmans.get(i).getY() + Motor.pacmans.get(i).getHeight() <= Motor.pacmans.get(j).getY())){
+
+                                } else {
+                                    Motor.pacmans.get(i).reverseDir();
+                                    Motor.pacmans.get(j).reverseDir();
+                                }
+                            }
+                        }
+                    }
+
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-                // collide between pacman
-
             }
-        }
+        });
+        thread.start();
     }
 
     public static void checkPacmanGhost(Pacman pacman) {

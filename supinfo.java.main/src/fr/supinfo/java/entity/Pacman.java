@@ -77,20 +77,7 @@ public class Pacman extends JLabel {
 
             count++;
         } else {
-            count -= 10;
-            if (dir == 0) {
-                dir = 2;
-                setLocation(getX() + speed, getY());
-            } else if (dir == 1) {
-                dir = 3;
-                setLocation(getX(), getY() + speed);
-            } else if (dir == 2) {
-                dir = 0;
-                setLocation(getX() - speed, getY());
-            } else if (dir == 3) {
-                dir = 1;
-                setLocation(getX(), getY() - speed);
-            }
+            reverseDir();
         }
         eatTime--;
         if (eatTime < 1) {
@@ -105,6 +92,23 @@ public class Pacman extends JLabel {
                 animation = 0;
             }
             animTime = 0;
+        }
+    }
+
+    public void reverseDir() {
+        count -= 10;
+        if (dir == 0) {
+            dir = 2;
+            setLocation(getX() + speed, getY());
+        } else if (dir == 1) {
+            dir = 3;
+            setLocation(getX(), getY() + speed);
+        } else if (dir == 2) {
+            dir = 0;
+            setLocation(getX() - speed, getY());
+        } else if (dir == 3) {
+            dir = 1;
+            setLocation(getX(), getY() - speed);
         }
     }
 
