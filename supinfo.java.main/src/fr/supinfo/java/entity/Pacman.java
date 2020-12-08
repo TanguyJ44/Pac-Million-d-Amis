@@ -1,7 +1,6 @@
 package fr.supinfo.java.entity;
 
 import fr.supinfo.java.main.Main;
-import fr.supinfo.java.physical.Collides;
 import fr.supinfo.java.physical.Motor;
 import fr.supinfo.java.utils.PacmanTail;
 
@@ -42,19 +41,6 @@ public class Pacman extends JLabel {
 
     public void onMove() {
         if (!collided && !stopMove) {
-            if (dir == 0) {
-                setLocation((int) getX() - speed, (int) getY());
-                setDirLeft();
-            } else if (dir == 1) {
-                setLocation((int) getX(), (int) getY() - speed);
-                setDirTop();
-            } else if (dir == 2) {
-                setLocation((int) getX() + speed, (int) getY());
-                setDirRight();
-            } else if (dir == 3) {
-                setLocation((int) getX(), (int) getY() + speed);
-                setDirBottom();
-            }
             if (count == maxCount) {
                 oldDir = dir;
                 tempDir = rand.nextInt(4);
@@ -74,6 +60,21 @@ public class Pacman extends JLabel {
                 count = 0;
                 maxCount = rand.nextInt(150 - 50 + 1) + 50;
             }
+
+            if (dir == 0) {
+                setLocation(getX() - speed, getY());
+                setDirLeft();
+            } else if (dir == 1) {
+                setLocation(getX(), getY() - speed);
+                setDirTop();
+            } else if (dir == 2) {
+                setLocation(getX() + speed, getY());
+                setDirRight();
+            } else if (dir == 3) {
+                setLocation(getX(), getY() + speed);
+                setDirBottom();
+            }
+
             count++;
         } else {
             count -= 10;
@@ -132,7 +133,7 @@ public class Pacman extends JLabel {
             size = newSize;
             if (newSize == 5) {
                 System.out.println("(!) Sifflement");
-                PacmanTail.init();
+                //PacmanTail.init();
                 //Main.audioControl.init(new File("/home/tanguy/Developpement/Java/Projet 2JAVA/supinfo.java.main/src/sound/whistling.wav"));
                 //Main.audioControl.play();
             }
@@ -140,7 +141,6 @@ public class Pacman extends JLabel {
                 System.out.println("[!] Pacman dead !");
                 Main.pbg.remove(this);
                 Motor.pacmans.remove(this);
-                System.out.println("PACMANS : " + Motor.pacmans.size());
             }
         }
     }

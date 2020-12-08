@@ -1,5 +1,6 @@
 package fr.supinfo.java.physical;
 
+import fr.supinfo.java.entity.Ghost;
 import fr.supinfo.java.gui.Frame;
 import fr.supinfo.java.main.Main;
 import fr.supinfo.java.entity.Pacman;
@@ -30,15 +31,11 @@ public class Collides {
                     if (checkCollide(Motor.pacmans.get(i), Frame.collide04)) returnValue = true;
                     if (checkCollide(Motor.pacmans.get(i), Frame.collide05)) returnValue = true;
 
-                    //if (checkPacmanCollide(Motor.pacmans.get(i))) returnValue = true;
+                    checkPacmanCollide(Motor.pacmans.get(i));
 
                     checkPacmanGhost(Motor.pacmans.get(i));
 
                     Motor.pacmans.get(i).setCollided(returnValue);
-
-                    /*if (Motor.pacmans.get(i).getCollided() != returnValue) {
-                        Motor.pacmans.get(i).setCollided(returnValue);
-                    }*/
                 }
             }
         };
@@ -59,19 +56,20 @@ public class Collides {
         return true;
     }
 
-    public static boolean checkPacmanCollide(Pacman pacman) {
+    public static void checkPacmanCollide(Pacman pacman) {
         for (int i = 0; i < Motor.pacmans.size(); i++) {
             if (pacman != Motor.pacmans.get(i)) {
                 if ( (pacman.getX() >= Motor.pacmans.get(i).getX() + Motor.pacmans.get(i).getWidth())
                         || (pacman.getX() + pacman.getWidth() <= Motor.pacmans.get(i).getX())
                         || (pacman.getY() >= Motor.pacmans.get(i).getY() + Motor.pacmans.get(i).getHeight())
                         || (pacman.getY() + pacman.getHeight() <= Motor.pacmans.get(i).getY())){
-                    return false;
+
                 }
-                return true;
+
+                // collide between pacman
+
             }
         }
-        return false;
     }
 
     public static void checkPacmanGhost(Pacman pacman) {

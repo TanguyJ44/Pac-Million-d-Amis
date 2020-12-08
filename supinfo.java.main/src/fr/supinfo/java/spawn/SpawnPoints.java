@@ -21,7 +21,7 @@ public class SpawnPoints {
         pacmanSpawnPoints.add(new ObjPosition(500, 600));
 
         ghostSpawnPoints.add(new ObjPosition(800, 550));
-        ghostSpawnPoints.add(new ObjPosition(100, 700));
+        ghostSpawnPoints.add(new ObjPosition(180, 600));
         ghostSpawnPoints.add(new ObjPosition(1000, 200));
         ghostSpawnPoints.add(new ObjPosition(500, 400));
         ghostSpawnPoints.add(new ObjPosition(150, 400));

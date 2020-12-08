@@ -58,10 +58,10 @@ public class Frame extends JFrame {
         getContentPane().add(btnOff);
         btnOff.setBounds(20, 80, 20, 20);
 
-        //background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/tanguy/Developpement/Java/Projet 2JAVA/supinfo.java.gui/src/img/plate.png"))); // NOI18N
-        background.setText("Background");
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/plate.png"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 1200, 800);
+        background.setVisible(false);
         getContentPane().add(collide01);
         collide01.setBounds(220, 150, 50, 50);
         getContentPane().add(collide02);
