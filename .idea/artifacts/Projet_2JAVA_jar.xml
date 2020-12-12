@@ -2,9 +2,6 @@
   <artifact type="jar" name="Projet 2JAVA:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Projet_2JAVA_jar</output-path>
     <root id="archive" name="Projet 2JAVA.jar">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-      </element>
       <element id="module-output" name="Projet 2JAVA" />
     </root>
   </artifact>
