@@ -39,6 +39,19 @@ public class Pacman extends JLabel {
 
     boolean stopMove = false;
 
+    /**
+     * Constructeur de l'objet
+     *
+     * @return      void : la méthode ne retourne rien
+     * @param       x : coordonnée en X
+     * @param       y : coordonnée en Y
+     * @param       speed : vitesse de déplacement
+     *
+     * @exception   null
+     *
+     * @see     Pacman#Pacman(int, int, int)
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public Pacman(int x, int y, int speed) {
         rand = new Random();
 
@@ -48,6 +61,14 @@ public class Pacman extends JLabel {
         setDirLeft();
     }
 
+    /**
+     * Méthode de déplacement du pacman
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#onMove()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void onMove() {
         if (!collided && !stopMove) {
             if (count == maxCount) {
@@ -104,6 +125,14 @@ public class Pacman extends JLabel {
         }
     }
 
+    /**
+     * Méthode d'inversement de la direction du pacman
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#reverseDir()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void reverseDir() {
         count -= 10;
         if (dir == 0) {
@@ -121,22 +150,63 @@ public class Pacman extends JLabel {
         }
     }
 
+    /**
+     * Setter pour activer ou désactiver le déplacement du pacman
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#setMoveStop(boolean) 
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void setMoveStop(boolean newMove) {
         stopMove = newMove;
     }
 
+    /**
+     * Setter de modification du temps de changement de direction (pour les collisions)
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#setCount(int) 
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void setCount(int newCount) {
         count = newCount;
     }
 
+    /**
+     * Setter pour modifier l'état de contact du pacman (libre / en collision)
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#setCollided(boolean)
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void setCollided(boolean newCollided) {
         collided = newCollided;
     }
 
+    /**
+     * Getter pour récupérer la taille du pacman
+     *
+     * @return      int : taille du pacman
+     *
+     * @see     Pacman#getGlobalSize()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public int getGlobalSize() {
         return size;
     }
 
+    /**
+     * Setter de modification de la taille du pacman
+     *
+     * @return      void : la méthode ne retourne rien
+     * @param       newSize : nouvelle taille du pacman
+     *
+     * @see     Pacman#setGlobalSize(int)
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void setGlobalSize(int newSize) {
         if (newSize < 6) {
             size = newSize;
@@ -157,10 +227,26 @@ public class Pacman extends JLabel {
         }
     }
 
+    /**
+     * Méthode tampon pour définir le pacman comme rassasié
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#hasEat()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void hasEat() {
         eatTime = 2000;
     }
 
+    /**
+     * Setter de direction vers le haut
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#setDirTop()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void setDirTop() {
         if (size == 1) {
             setSize(27, 27);
@@ -200,6 +286,14 @@ public class Pacman extends JLabel {
         }
     }
 
+    /**
+     * Setter de direction vers la droite
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#setDirRight()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void setDirRight() {
         if (size == 1) {
             setSize(27, 27);
@@ -239,6 +333,14 @@ public class Pacman extends JLabel {
         }
     }
 
+    /**
+     * Setter de direction vers le bas
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#setDirBottom()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void setDirBottom() {
         if (size == 1) {
             setSize(27, 27);
@@ -278,6 +380,14 @@ public class Pacman extends JLabel {
         }
     }
 
+    /**
+     * Setter de direction vers la gauche
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Pacman#setDirLeft()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void setDirLeft() {
         if (size == 1) {
             setSize(27, 27);

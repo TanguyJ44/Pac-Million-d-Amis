@@ -12,15 +12,37 @@ import fr.supinfo.java.physical.Collides;
 import fr.supinfo.java.physical.Motor;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class Frame extends JFrame {
 
+    int currentFPS = 0;
+    String currentStat = "RUNNING";
+
+    /**
+     * Constructeur de Frame
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Frame#Frame()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public Frame() {
         initComponents();
         setSize(1200, 837);
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Initialisation de tous les composants JFrame utile
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @see     Frame#initComponents() 
+     * @author  Supinfo As.c 2 Nantes
+     **/
     @SuppressWarnings("unchecked")
     private void initComponents() {
 
@@ -92,6 +114,15 @@ public class Frame extends JFrame {
         pack();
     }
 
+    /**
+     * Action bouton ON
+     *
+     * @return      void : la méthode ne retourne rien
+     * @param       evt : instance du type d'event sur le composant
+     *
+     * @see     Frame#btnOnActionPerformed(ActionEvent) 
+     * @author  Supinfo As.c 2 Nantes
+     **/
     private void btnOnActionPerformed(java.awt.event.ActionEvent evt) {
         if (Motor.isRunning == false) {
             Motor.isRunning = true;
@@ -101,6 +132,15 @@ public class Frame extends JFrame {
         }
     }
 
+    /**
+     * Action bouton OFF
+     *
+     * @return      void : la méthode ne retourne rien
+     * @param       evt : instance du type d'event sur le composant
+     *
+     * @see     Frame#btnOffActionPerformed(ActionEvent)
+     * @author  Supinfo As.c 2 Nantes
+     **/
     private void btnOffActionPerformed(java.awt.event.ActionEvent evt) {
         if (Motor.isRunning == true) {
             Motor.isRunning = false;
@@ -111,14 +151,29 @@ public class Frame extends JFrame {
         }
     }
 
-    int currentFPS = 0;
-    String currentStat = "RUNNING";
-
+    /**
+     * Mise à jour du compteur de FPS
+     *
+     * @return      void : la méthode ne retourne rien
+     * @param       newFPS : nouvelle moyenne de FPS
+     *
+     * @see     Frame#updateFPS(int) 
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void updateFPS(int newFPS) {
         currentFPS = newFPS;
         this.setTitle("Pac'million d'Amis - 2JAVA | " + currentStat + " | " + newFPS + " FPS");
     }
 
+    /**
+     * Mise à jour du status de la simulation
+     *
+     * @return      void : la méthode ne retourne rien
+     * @param       isRun : true si la simulation est en cours, false si elle est à l'arrêt
+     *
+     * @see     Frame#updateStat(boolean)
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void updateStat(boolean isRun) {
         if (isRun == true) {
             currentStat = "RUNNING";

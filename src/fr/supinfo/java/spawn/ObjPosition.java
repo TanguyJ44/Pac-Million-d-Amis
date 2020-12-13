@@ -8,28 +8,50 @@
 
 package fr.supinfo.java.spawn;
 
+import fr.supinfo.java.physical.Motor;
+
 public class ObjPosition {
 
     int x;
     int y;
 
+    /**
+     * Constructeur de la classe
+     *
+     * @return      void : la méthode ne retourne rien
+     * @param       x : Position en X
+     * @param       y : Position en Y
+     *
+     * @exception   null
+     *
+     * @see     ObjPosition#ObjPosition(int, int)
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public ObjPosition(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public void setX(int newX) {
-        x = newX;
-    }
-
-    public void setY(int newY) {
-        y = newY;
-    }
-
+    /**
+     * Getter de récupération de X
+     *
+     * @return      int : position en X
+     *
+     * @see     ObjPosition#getX()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public int getX() {
         return x;
     }
 
+    /**
+     * Getter de récupération de Y
+     *
+     * @return      int : position en Y
+     *
+     * @see     ObjPosition#getY()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public int getY() {
         return y;
     }

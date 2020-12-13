@@ -22,6 +22,16 @@ public class Collides {
     public static ScheduledExecutorService executor;
     public static Thread thread;
 
+    /**
+     * Fonction de lancement du vérificateur de collision
+     *
+     * @return      void : la fonction ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     Collides#start()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void start() {
         checkPacmanCollide();
 
@@ -50,11 +60,31 @@ public class Collides {
         executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.MICROSECONDS);
     }
 
+    /**
+     * Fonction d'arrêt du vérificateur de collision
+     *
+     * @return      void : la fonction ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     Collides#stop()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void stop() {
         executor.shutdown();
         thread.interrupt();
     }
 
+    /**
+     * Fonction de vérification de collision Pacman -> Murs
+     *
+     * @return      boolean : renvoie true si collision
+     *
+     * @exception   null
+     *
+     * @see     Collides#checkCollide(Pacman, JLabel)
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static boolean checkCollide(Pacman pacman, JLabel wall) {
         if ( (pacman.getX() >= wall.getX() + wall.getWidth())
                 || (pacman.getX() + pacman.getWidth() <= wall.getX())
@@ -65,6 +95,16 @@ public class Collides {
         return true;
     }
 
+    /**
+     * Fonction de vérification de collision Pacman -> Pacman (en bêta)
+     *
+     * @return      void : la fonction ne retourne rien
+     *
+     * @exception   InterruptedException
+     *
+     * @see     Collides#checkPacmanCollide()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void checkPacmanCollide() {
 
         thread = new Thread(new Runnable() {
@@ -98,6 +138,16 @@ public class Collides {
         thread.start();
     }
 
+    /**
+     * Fonction de vérification de collision Pacman -> Fantôme
+     *
+     * @return      void : la fonction ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     Collides#checkPacmanGhost(Pacman)
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void checkPacmanGhost(Pacman pacman) {
         for (int i = 0; i < Motor.ghosts.size(); i++) {
             if ( (pacman.getX() >= Motor.ghosts.get(i).getX() + Motor.ghosts.get(i).getWidth())

@@ -15,6 +15,16 @@ import fr.supinfo.java.physical.Motor;
 
 public class SpawnNewEntity {
 
+    /**
+     * Fonction de création d'un nouveau pacman
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     SpawnNewEntity#spawnPacman()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void spawnPacman() {
         ObjPosition pacman_location = SpawnPoints.getRandomPacmanSpawnPoint();
         Pacman pacman = new Pacman(pacman_location.getX(), pacman_location.getY(), 2);
@@ -25,6 +35,16 @@ public class SpawnNewEntity {
         System.out.println("Spawn new Pacman !");
     }
 
+    /**
+     * Fonction de création d'un nouveau Fantôme
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     SpawnNewEntity#spawnGhost()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void spawnGhost() {
         ObjPosition ghost_location = SpawnPoints.getRandomGhostSpawnPoint();
         Ghost ghost = new Ghost(ghost_location.getX(), ghost_location.getY());

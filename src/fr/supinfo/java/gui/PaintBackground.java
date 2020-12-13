@@ -15,6 +15,17 @@ import javax.swing.*;
 
 public class PaintBackground extends JPanel {
 
+    /**
+     * Peindre le background sur la frame
+     *
+     * @return      void : la méthode ne retourne rien
+     * @param       g : graphique à peindre (abstraction)
+     *
+     * @exception   IOException
+     *
+     * @see     PaintBackground#paintComponent(Graphics) 
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public void paintComponent(Graphics g){
         Image img = null;
         try {

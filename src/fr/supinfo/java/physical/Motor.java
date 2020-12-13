@@ -40,12 +40,32 @@ public class Motor {
     static int timeSpawnNextGhost = 300;
     static int countTimeSpawnGhost = 0;
 
+    /**
+     * Fonction d'initialisation du moteur
+     *
+     * @return      void : la fonction ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     Motor#init()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void init() {
         pacmans = new ArrayList<>();
         ghosts = new ArrayList<>();
         rand = new Random();
     }
 
+    /**
+     * Fonction de lancement du moteur
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     Motor#start()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void start() {
         executor = Executors.newSingleThreadScheduledExecutor();
         Runnable periodicTask = new Runnable() {
@@ -86,6 +106,16 @@ public class Motor {
         executor.scheduleAtFixedRate(periodicTask, 0, 20, TimeUnit.MILLISECONDS);
     }
 
+    /**
+     * Fonction d'arrêt du moteur'
+     *
+     * @return      void : la méthode ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     Motor#stop()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void stop() {
         executor.shutdown();
     }
