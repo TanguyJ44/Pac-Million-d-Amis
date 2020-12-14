@@ -21,6 +21,16 @@ public class PacmanTail {
     public static ScheduledExecutorService executor;
     public static int posAfterLeader = 1;
 
+    /**
+     * Fonction d'initialisation et de trie des pacmans dans la queue
+     *
+     * @return      void : la fonction ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     PacmanTail#init()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void init () {
         Pacman leader = null;
 
@@ -56,6 +66,16 @@ public class PacmanTail {
         start();
     }
 
+    /**
+     * Fonction de lancement de la queue et de son parcour
+     *
+     * @return      void : la fonction ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     PacmanTail#start()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void start() {
         executor = Executors.newSingleThreadScheduledExecutor();
         Runnable periodicTask = new Runnable() {
@@ -86,6 +106,16 @@ public class PacmanTail {
 
     }
 
+    /**
+     * Fonction d'arrêt de la queue en bout de parcour
+     *
+     * @return      void : la fonction ne retourne rien
+     *
+     * @exception   null
+     *
+     * @see     PacmanTail#stop()
+     * @author  Supinfo As.c 2 Nantes
+     **/
     public static void stop() {
         executor.shutdown();
 

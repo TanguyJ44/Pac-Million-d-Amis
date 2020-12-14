@@ -212,8 +212,8 @@ public class Pacman extends JLabel {
             size = newSize;
             if (newSize == 5) {
                 System.out.println("(!) Sifflement");
-                //PacmanTail.init();
-                Main.audioControl.init(new File("./src/sound/whistling.wav"));
+                PacmanTail.init();
+                Main.audioControl.init(new File("./sound/whistling.wav"));
                 Main.audioControl.play();
             }
             if (newSize == 0) {
@@ -221,7 +221,7 @@ public class Pacman extends JLabel {
                 Main.pbg.remove(this);
                 Motor.pacmans.remove(this);
 
-                Main.audioControl.init(new File("./src/sound/pacman_dead.wav"));
+                Main.audioControl.init(new File("./sound/pacman_dead.wav"));
                 Main.audioControl.play();
             }
         }
