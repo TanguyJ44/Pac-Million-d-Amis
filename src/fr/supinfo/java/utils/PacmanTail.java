@@ -129,6 +129,9 @@ public class PacmanTail {
 
         for (Pacman pacman : Motor.pacmans) {
             pacman.setMoveStop(false);
+            if (pacman.getGlobalSize() == 5) {
+                pacman.setGlobalSize(4);
+            }
         }
     }
 
